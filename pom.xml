@@ -6,6 +6,37 @@
   <packaging>war</packaging>
   <name>BMI</name>
   <description>BMI Calculator</description>
+  <build>
+  <plugins>
+	<plugin>
+		<groupId>org.jacoco</groupId>
+		<artifactId>jacoco-maven-plugin</artifactId>
+		<version>0.8.2</version>
+		<executions>
+			<execution>
+				<goals>
+					<goal>prepare-agent</goal>
+				</goals>
+			</execution>
+			<!-- attached to Maven test phase -->
+			<execution>
+				<id>report</id>
+				<phase>test</phase>
+				<goals>
+					<goal>report</goal>
+				</goals>
+			</execution>
+		</executions>
+	</plugin>
+	<plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-war-plugin</artifactId>
+        <configuration>
+        <failOnMissingWebXml>false</failOnMissingWebXml>
+        </configuration>
+        </plugin>
+  </plugins>
+ </build>
   <dependencies>
   <!-- https://mvnrepository.com/artifact/junit/junit -->
   <dependency>
@@ -21,12 +52,5 @@
     <version>3.1.0</version>
     <scope>provided</scope>
   </dependency>
-  <!-- https://mvnrepository.com/artifact/org.apache.maven.plugins/maven-war-plugin -->
-  <dependency>
-    <groupId>org.apache.maven.plugins</groupId>
-    <artifactId>maven-war-plugin</artifactId>
-    <version>2.6</version>
-  </dependency>
-
   </dependencies>
 </project>
